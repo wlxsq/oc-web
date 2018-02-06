@@ -1,8 +1,8 @@
 <template>
 	<Content :style="{padding: '24px', minHeight: '400px', background: '#fff'}">
 		<div class="content-2">
-			<Table border :columns="columns7" :data="data6"></Table>
-			<Page :total="12" show-elevator show-total :style="{marginTop: '20px',}"></Page>
+			<Table border :columns="columns7" :data="showData"></Table>
+			<Page :total="dataCount" :page-size="pageSize" @on-change="changepage" :style="{marginTop: '20px',}" show-elevator show-total></Page>
 		</div>
 	</Content>
 </template>
@@ -10,10 +10,12 @@
 export default {
 	data () {
 		return {
+			//	初始化信息总条数
+			dataCount: 0,
+			//	每页显示多少条
+			pageSize:1,
+			//	表头字段
 			columns7: [
-			// {
-			// 	title: 'ID',
-			// },
 			{
 				title: '姓名',
 				key: 'name',
@@ -87,27 +89,51 @@ export default {
 				}
 			}
 			],
-			data6: []
+			//	总数据数据
+			totalData: [],
+			//	显示的数据
+			showData: [],
+
 		}
 	},
 	mounted: function() {
-		this.$http.get('http://crm.oc.com/api/v1/staff/all').then(res=>{
-			console.log(res.body);
-			this.data6 = res.body;
+		this.$http.get('http://localhost/oc-server/public/index.php/api/v1/staff/all').then(res=>{
+			//	将数据赋值给data6
+			this.totalData = res.body;
+			console.log(this.totalData);
+			//	统计数据的总数
+			this.dataCount = res.body.length;
+			//	给显示的数据赋值
+			if(this.dataCount < this.pageSize){
+				this.showData = this.totalData;
+			} else {
+				this.showData = this.totalData.slice(0,this.pageSize);
+			}
 		},res=>{
 			console.log("error");
 		});
 	},
 	methods: {
+		//	点击查看详细数据
 		show (index) {
 			this.$Modal.info({
 				title: 'User Info',
-				content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].telphone}<br>Address：${this.data6[index].email}`
+				content: `Name：${this.showData[index].name}<br>Age：${this.showData[index].telphone}<br>Address：${this.showData[index].email}`
 			})
 		},
+		//	删除某条数据
 		remove (index) {
-			this.data6.splice(index, 1);
+			this.showData.splice(index, 1);
+		},
+		//	
+		changepage(index){
+			console.log(index);
+			var st = (index - 1 ) * this.pageSize;
+			var ed = index * this.pageSize;
+			this.showData = this.totalData.slice(st, ed);
+			console.log(this.showData);
 		}
+
 	}
 }
 </script>

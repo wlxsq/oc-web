@@ -17,8 +17,10 @@ import TeaColleague from '@/components/pages/tea/Colleague'
 import TeaClassRecord from '@/components/pages/tea/ClassRecord'
 import TeaWorkRecord from '@/components/pages/tea/WorkRecord'
 //	pages/Stu
-import StuGoodStu from '@/components/pages/stu/GoodStu'
+import StuGood from '@/components/pages/stu/GoodStu'
 import StuScore from '@/components/pages/stu/Score'
+import StuSchedule from '@/components/pages/stu/StuSchedule'
+import StuTeacher from '@/components/pages/stu/Teacher'
 
 Vue.use(Router)
 
@@ -41,6 +43,32 @@ export default new Router({
 			path: '/stu',
 			name: 'stu',
 			component: Stu,
+			children: [
+			{
+				path: '',
+				redirect: '/stu-schedule',
+			},
+			{
+				path: '/stu-schedule',
+				name: 'stu-schedule',
+				component: Schedule,
+			},
+			{
+				path: '/stu-stu',
+				name: 'stu-stu',
+				component: StuGood,
+			},
+			{
+				path: '/stu-tea',
+				name: 'stu-tea',
+				component: StuTeacher,
+			},
+			{
+				path: '/stu-score',
+				name: 'stu-score',
+				component: StuScore,
+			}
+			]
 		},
 		{
 			path: '/stu_err',
@@ -62,12 +90,12 @@ export default new Router({
 				component: Schedule,
 			},
 			{
-				path: '/my-stu',
+				path: '/tea-stu',
 				name: 'schedule',
 				component: TeaStu,
 			},
 			{
-				path: '/colleague',
+				path: '/tea-colleague',
 				name: 'colleague',
 				component: TeaColleague,
 			},

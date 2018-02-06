@@ -6,7 +6,7 @@
 					<Icon type="ios-navigate"></Icon>
 					我的课表
 				</MenuItem>
-				<MenuItem name="my-stu">
+				<MenuItem name="tea-stu">
 					<Icon type="ios-navigate"></Icon>
 					我的学生
 				</MenuItem>
@@ -18,7 +18,7 @@
 					<Icon type="ios-analytics"></Icon>
 					我的考勤
 				</MenuItem>
-				<MenuItem name="colleague">
+				<MenuItem name="tea-colleague">
 					<Icon type="ios-keypad"></Icon>
 					我的同事
 				</MenuItem>
@@ -32,40 +32,6 @@
 			<router-view></router-view>
 		</Layout>
 	</Layout>
-	<!-- <Card>
-		<div style="min-height: 400px;">
-			<Content :style="{padding: '0 100px'}">
-				<div>
-					<Menu mode="horizontal" theme="light" active-name="1">
-						<div class="t1">
-							<Breadcrumb>
-								<BreadcrumbItem>首页</BreadcrumbItem>
-								<BreadcrumbItem>一码教师</BreadcrumbItem>
-								<BreadcrumbItem>课表</BreadcrumbItem>
-							</Breadcrumb>
-						</div>
-						<div class="t2">
-							<MenuItem>
-								<Icon type="ios-keypad"></Icon>
-								<span>课表</span>
-							</MenuItem>
-							<MenuItem>
-								<Icon type="ios-keypad"></Icon>
-								<span>上课记录</span>
-							</MenuItem>
-							<MenuItem>
-								<Icon type="ios-keypad"></Icon>
-								<span>上课记录</span>
-							</MenuItem>
-						</div>
-					</Menu>
-				</div>
-				<div>
-					<h1></h1>
-				</div>
-			</Content>
-		</div>
-	</Card> -->
 </template>
 <script type="text/javascript">
 export default{

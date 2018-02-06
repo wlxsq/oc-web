@@ -5,50 +5,54 @@
 				<p slot="title">不知你想问啥呢？</p>
 				<p>
 					<Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-						<FormItem label="Name" prop="name">
-							<Input v-model="formValidate.name" placeholder="Enter your name"></Input>
+						<FormItem label="学生姓名" prop="name">
+							<Input v-model="formValidate.name" placeholder="请输入学生姓名"></Input>
 						</FormItem>
-						<FormItem label="E-mail" prop="mail">
-							<Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
+						<FormItem label="家长姓名" prop="name">
+							<Input v-model="formValidate.name" placeholder="请输入家长姓名"></Input>
 						</FormItem>
-						<FormItem label="City" prop="city">
-							<Select v-model="formValidate.city" placeholder="Select your city">
-								<Option value="beijing">New York</Option>
-								<Option value="shanghai">London</Option>
-								<Option value="shenzhen">Sydney</Option>
-							</Select>
+						<FormItem label="联系方式" prop="mail">
+							<Input v-model="formValidate.mail" placeholder="请输入联系方式"></Input>
 						</FormItem>
-						<FormItem label="Date">
-							<Row>
-								<Col span="11">
-								<FormItem prop="date">
-									<DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
+						<Row>
+							<Col span="10">
+								<FormItem label="信息" prop="name">
+									<FormItem prop="date">
+										<DatePicker type="date" placeholder="选择你的出生日期" v-model="formValidate.date"></DatePicker>
+									</FormItem>
 								</FormItem>
 							</Col>
-							<Col span="2" style="text-align: center">-</Col>
-							<Col span="11">
-							<FormItem prop="time">
-								<TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>
-							</FormItem>
+							<Col span="10">
+								<FormItem label="年级" prop="name">
+									<FormItem>
+										<Select  placeholder="选择你的年级">
+										<Option value="beijing">一年级</Option>
+										<Option value="shanghai">二年级</Option>
+										<Option value="shenzhen">三年级</Option>
+										<Option value="shenzhen">四年级</Option>
+										<Option value="shenzhen">五年级</Option>
+										<Option value="shenzhen">六年级</Option>
+										<Option value="shenzhen">初一</Option>
+										<Option value="shenzhen">初二</Option>
+										<Option value="shenzhen">初三</Option>
+										</Select>
+									</FormItem>
+								</FormItem>
+							</Col>
 						</Col>
 					</Row>
-				</FormItem>
-				<FormItem label="Gender" prop="gender">
-					<RadioGroup v-model="formValidate.gender">
-						<Radio label="male">Male</Radio>
-						<Radio label="female">Female</Radio>
-					</RadioGroup>
-				</FormItem>
-				<FormItem label="Hobby" prop="interest">
+				<FormItem label="咨询课程" >
+					<Col span="20">
 					<CheckboxGroup v-model="formValidate.interest">
-						<Checkbox label="Eat"></Checkbox>
-						<Checkbox label="Sleep"></Checkbox>
-						<Checkbox label="Run"></Checkbox>
-						<Checkbox label="Movie"></Checkbox>
+						<Checkbox span="5" label="Scratch趣味编程"></Checkbox>
+						<Checkbox span="5" label="计算机基础"></Checkbox>
+						<Checkbox span="5" label="C/C++语言基础"></Checkbox>
+						<Checkbox span="5" label="信奥竞赛"></Checkbox>
 					</CheckboxGroup>
+					</Col>
 				</FormItem>
-				<FormItem label="Desc" prop="desc">
-					<Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+				<FormItem label="问题" prop="desc">
+					<Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 5,maxRows: 5}" placeholder="您想咨询的问题可以写在这里..."></Input>
 				</FormItem>
 				<FormItem>
 					<Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>

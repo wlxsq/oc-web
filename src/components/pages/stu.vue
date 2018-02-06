@@ -1,20 +1,20 @@
 <template>
 	<Layout >
 		<Sider hide-trigger  :style="{background: '#fff'}">
-			<Menu active-name="1-2" width="auto" :open-names="['1']">
-				<MenuItem name="MySchedule">
+			<Menu @on-select="routeTo" active-name="1-2" width="auto" :open-names="['1']">
+				<MenuItem name="stu-schedule">
 					<Icon type="ios-navigate"></Icon>
 					我的课表
 				</MenuItem>
-				<MenuItem name="MyScore">
+				<MenuItem name="stu-score">
 					<Icon type="ios-navigate"></Icon>
 					我的课程
 				</MenuItem>
-				<MenuItem name="MyTea">
+				<MenuItem name="stu-tea">
 					<Icon type="ios-analytics"></Icon>
 					我的老师
 				</MenuItem>
-				<MenuItem name="MyClassMate">
+				<MenuItem name="stu-stu">
 					<Icon type="ios-keypad"></Icon>
 					优秀同学
 				</MenuItem>
@@ -23,13 +23,9 @@
 		<Layout :style="{padding: '0 24px 24px'}">
 			<Breadcrumb :style="{margin: '24px 0'}">
 				<BreadcrumbItem>一码学生</BreadcrumbItem>
-				<BreadcrumbItem>我的课表</BreadcrumbItem>
+				<BreadcrumbItem>{{this.$route.path.replace('/','')}}</BreadcrumbItem>
 			</Breadcrumb>
-			<Content :style="{padding: '24px', minHeight: '400px', background: '#fff'}">
-				<div class="content-2">
-					<Table border :columns="columns7" :data="data7"></Table>
-				</div>
-			</Content>
+			<router-view></router-view>
 		</Layout>
 	</Layout>
 </template>
@@ -111,6 +107,17 @@ export default{
 			]
 		}
 	},
+	computed:{
+		setActive() {
+			return this.$route.path.replace('/','');
+		},
+	},
+	methods:{
+		routeTo(e) {
+			console.log(e);
+			this.$router.push(e);
+		}
+	}
 }
 </script>
 <style type="text/css">
